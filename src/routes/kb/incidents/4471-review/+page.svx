@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 review · two date-handling causes, not one fix'
 owner: Michał Wirkus
-status: proposed
+status: resolved
 reviewed: '2026-11-06'
 signature: 'Michał Wirkus · MEGA S01E03 · 2026-11-06'
 ---
@@ -19,6 +19,12 @@ signature: 'Michał Wirkus · MEGA S01E03 · 2026-11-06'
 The [original incident page](/kb/incidents/4471) says one issue and one queued fix. Its rendered cause table disagrees with that prose. This review preserves the original record and separates the two causes defined by the running code.
 
 <Callout kind="warn">This review uses the export dated 2026-10-04. The desk keeps working; refresh the source data and rebuild before using these figures as the current queue. A new review date does not make an old export live.</Callout>
+
+## Engineering update: 2026-10-05
+
+The live course page now records source incident #4471 as closed on 5 October. The parser is **FIXED** by `fix(dates): parse dd/mm for eu locales`; [parser ticket #1](https://github.com/michups/mega-s01e03-what-it-shows/issues/1) is therefore completed. The hint is **WON'T FIX** because the booking-v3 form was retired; [hint ticket #2](https://github.com/michups/mega-s01e03-what-it-shows/issues/2) is closed as not planned, not as a completed fix.
+
+Closure does not mean both defects were repaired. The counts below remain the historical export's report membership, and the exceptional timing symptoms are not independently explained by this update. The separate deduplication decision remains a proposal requiring desk approval.
 
 ## Evidence and counts
 
