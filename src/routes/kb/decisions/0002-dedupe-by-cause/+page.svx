@@ -4,7 +4,7 @@ title: '0002 · Propose deduplication by demonstrated cause'
 owner: Michał Wirkus
 status: proposed
 reviewed: '2026-11-06'
-signature: 'Michał Wirkus · MEGA S01E03 · 2026-11-06'
+signature: 'v1.eyJzdG9yeSI6Im9mZiIsInN1YiI6IjEzMDQ2IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM5Mjc4MDcsImV4cCI6MTc5NDAxNDIwN30.VEHgT4u4Oa5o_1kOUdZmPsijx4ADt52ktaJK9Tz1glg'
 ---
 
 <script>
