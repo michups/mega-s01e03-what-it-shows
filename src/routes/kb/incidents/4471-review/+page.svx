@@ -1,0 +1,59 @@
+---
+layout: runbook
+title: '#4471 review · two date-handling causes, not one fix'
+owner: Michał Wirkus
+status: proposed
+reviewed: '2026-11-06'
+signature: 'Michał Wirkus · MEGA S01E03 · 2026-11-06'
+---
+
+<script>
+  import IncidentReview from '#lib/kb/IncidentReview.svelte';
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+</script>
+
+The [original incident page](/kb/incidents/4471) says one issue and one queued fix. Its rendered cause table disagrees with that prose. This review preserves the original record and separates the two causes defined by the running code.
+
+<Callout kind="warn">This review uses the export dated 2026-10-04. The desk keeps working; refresh the source data and rebuild before using these figures as the current queue. A new review date does not make an old export live.</Callout>
+
+## Evidence and counts
+
+<IncidentReview />
+
+## Parser: month-first interpretation of day-first dates
+
+The shared parser reads month first even for a tenant whose locale writes day first. An April booking entered as `07/04/2026` can become July 4 rather than April 7. This is a parsing contract problem: use the tenant's declared locale or an explicit, unambiguous date representation, and keep date-only values distinct from instants.
+
+App and email reports belong here under the existing rules, as do form reports that do not use the conflicting month-first hint. Browser locale and intake tags do not determine the tenant's configuration. Acceptance checks should cover each supported day-first locale, ambiguous dates, days over twelve, and round trips through the invite.
+
+## Hint: booking-v3 advertises a different date order
+
+The booking-v3 hint prints `MM/DD/YYYY`, while the day-first tenant's form reads dates in the tenant's order. A user follows the hint and types `04/07/2026` for April 7, but the form can read July 4. Fix the displayed hint and its input contract together; changing only the shared parser does not correct misleading instructions.
+
+This issue covers form-channel reports from day-first tenants running booking-v3. Acceptance checks should compare the visible hint, tenant locale, entered value, and saved date. The two tickets should cross-reference each other without merging their counts.
+
+## What the existing page actually renders
+
+<CauseTable ticket={4471} />
+
+The chart distinguishes reports received from reports merged. A bulk merge is not a new wave of reports and does not date the start of the incident.
+
+<QueueTimeline ticket={4471} />
+
+## Triage: compare causes, not subjects
+
+The accepted [decision 0001](/kb/decisions/0001-dedupe-by-subject) is a historical record, not a safe present rule. Its [triage page](/kb/triage/dedupe) has not been reviewed since 2024. Equal subjects can describe different causes; different subjects or channels can describe the same cause. Missing tenant configuration means unplaced, not automatically duplicate.
+
+<DedupeExplorer />
+
+The [proposed replacement decision](/kb/decisions/0002-dedupe-by-cause) leaves the accepted record intact. The desk must approve that change; this review does not silently mark it accepted.
+
+## Closing criteria
+
+Verify each fix separately, retain report-to-ticket membership, review the exceptional symptoms, refresh the export, and rebuild this page. Count each report ID once. Preserve both the written explanation and the rendered page so the desk can inspect the evidence behind the numbers.
+
+<RenderStamp {signature} />

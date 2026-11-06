@@ -1,0 +1,29 @@
+---
+layout: runbook
+title: '0002 · Propose deduplication by demonstrated cause'
+owner: Michał Wirkus
+status: proposed
+reviewed: '2026-11-06'
+signature: 'Michał Wirkus · MEGA S01E03 · 2026-11-06'
+---
+
+<script>
+  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+## Context
+
+The [review of incident 4471](/kb/incidents/4471-review) demonstrates different causes under one ticket. Matching subjects alone can merge unrelated defects, while different subjects can describe one defect. The old decision remains unchanged as the record of what the desk accepted in 2024.
+
+## Proposed decision
+
+Replace subject-only deduplication with demonstrated cause: identify the tenant configuration, locale, form version, entry channel, and actual symptom before merging. A shared subject is a search aid, not causal evidence. Missing context stays unplaced until investigated.
+
+<DedupeExplorer />
+
+## Consequences and approval
+
+Triage requires reading and configuration lookup. Count unique report IDs, retain membership and timestamps, and preserve exceptions for investigation. The support desk must approve this proposal before it supersedes decision 0001.
+
+<RenderStamp {signature} />

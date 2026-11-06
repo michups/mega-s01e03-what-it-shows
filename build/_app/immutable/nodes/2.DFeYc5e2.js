@@ -1,0 +1,1 @@
+import{a as o,f as r}from"../chunks/dlBdH0C1.js";import{h as t}from"../chunks/Bk2JxIui.js";import{e as n,$ as m}from"../chunks/2H1GL49x.js";var p=r('<main><h1>Support knowledge base</h1><a href="/kb">Open the knowledge base</a></main>');function d(a){var e=p();t("1uha8ag",f=>{n(()=>{m.title="Support knowledge base"})}),o(a,e)}export{d as component};
